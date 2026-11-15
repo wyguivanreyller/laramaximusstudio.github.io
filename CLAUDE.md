@@ -55,28 +55,34 @@ e como trabalhamos. Atualize sempre que algo mudar (novo lançamento, novo link,
 - Rodapé: "*Sujeito à análise de crédito. Imagens meramente ilustrativas."
 - Não inventar dados: só usar o que está no book ou o que ele informar.
 
-## Rotina de postagens nas redes (plano de 07/11 a 31/12/2026)
+## Rotina de postagens nas redes (até 31/12/2026)
 
-Fuso: America/Sao_Paulo. Padrão completo de arte, legenda e música na skill "posts-redes-wyguivan".
+Tudo roda sozinho por tarefas agendadas (Metricool, marca 7928738). Fuso America/Sao_Paulo.
+A rotina das 21h13 prepara os posts do dia seguinte; outra tarefa confere cada post e avisa o Wyguivan.
 
-- 04h57: story "Bom dia" (frase de pensador + logo Equipe Maximus). Instagram e Facebook em story; TikTok no feed, sem música.
-- 09h27: **Reels de imóvel, só Instagram e Facebook** (novo, todo dia).
-- 11h07: post de imóvel (story + carrossel), segunda a sábado.
-- 12h57: story "Boa tarde" (mercado imobiliário, MCMV, investimento).
-- 15h27: **Reels de imóvel, só Instagram e Facebook** (novo, todo dia).
-- 19h17: post de imóvel (story + carrossel), segunda a sábado. Domingo: Reels às 19h17 e story às 09h17.
+| Hora | Post | Redes |
+|---|---|---|
+| 04h57 | Story "Bom dia" | Insta e Face (story) + TikTok (feed) |
+| 08h57 | Só domingo: story do imóvel | Insta, Face e TikTok |
+| 09h27 | Reels extra de imóvel (desde 15/11) | Só Insta e Face |
+| 11h07 | Seg a sáb: story do imóvel | Insta, Face e TikTok |
+| 11h57 | Story do Reel institucional | Só Insta e Face |
+| 12h57 | Story "Boa tarde" | Insta e Face (story) + TikTok (feed) |
+| 15h27 | Reels extra de imóvel (desde 15/11) | Só Insta e Face |
+| 17h57 | Seg a sáb: carrossel (4 fotos) | Insta, Face e TikTok |
+| 18h57 | Só domingo: Reels do imóvel | Insta, Face e TikTok |
 
-Reels das 09h27 e 15h27:
-- Captações do Latitude em Goiânia e Aparecida, nas três faixas: baixo (R$ 280–480 mil),
-  médio (R$ 1–1,6 milhão), alto (R$ 4,5–6,5 milhões).
-- Vigência: de **15/11/2026 a 31/12/2026** (47 dias).
-- Rodízio de 3 dias: dia 1 baixo (09h27) + médio (15h27); dia 2 alto + baixo; dia 3 médio + alto.
-  Depois volta ao dia 1, sem parar. 15/11 = dia 1. Para achar o dia: conte os dias desde 15/11,
-  divida por 3 e veja o resto (0 = dia 1, 1 = dia 2, 2 = dia 3). Ex.: 16/11 = dia 2, 17/11 = dia 3,
-  18/11 = dia 1, 31/12 = dia 2. Nunca repetir imóvel.
-- Vertical 1080x1920, até 30 s, chamativo e sofisticado, com trilha cinematográfica/suave ou gospel
-  (nunca modão, sertanejo comum, funk ou rock).
-- Assinatura "Wyguivan Reyller · CRECI 46.695" e chamada "Siga meu perfil".
+Reels extras das 09h27 e 15h27:
+- Vigência: de **15/11/2026 a 31/12/2026**.
+- Faixas: 1 = R$ 280–480 mil; 2 = R$ 1–1,6 milhão; 3 = R$ 4,5–6,5 milhões.
+- Rodízio de 3 dias, 15/11 = dia 1: dia 1 = faixa 1 (09h27) + faixa 2 (15h27); dia 2 = faixa 3 + faixa 1;
+  dia 3 = faixa 2 + faixa 3; depois volta ao dia 1. Conta: dias desde 15/11, resto da divisão por 3
+  (0 = dia 1, 1 = dia 2, 2 = dia 3). Ex.: 16/11 = dia 2, 18/11 = dia 1, 31/12 = dia 2.
+- Vídeo vertical até 30 s, chamativo, trilha cinematográfica/suave ou gospel. Nunca repetir imóvel.
+
+**Plano B:** quando o Metricool bate o limite da conta e não publica, a tarefa de conferência
+publica sozinha pelo Composio no Instagram e no Facebook (autorizado pelo Wyguivan em 13/11/2026).
+O TikTok não tem plano B: se o Metricool falhar nele, só avisa.
 
 ## Onde ficam os materiais
 
