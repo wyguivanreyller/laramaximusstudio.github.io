@@ -55,6 +55,25 @@ e como trabalhamos. Atualize sempre que algo mudar (novo lançamento, novo link,
 - Rodapé: "*Sujeito à análise de crédito. Imagens meramente ilustrativas."
 - Não inventar dados: só usar o que está no book ou o que ele informar.
 
+## Rotina de postagens nas redes (plano de 07/11 a 31/12/2026)
+
+Fuso: America/Sao_Paulo. Padrão completo de arte, legenda e música na skill "posts-redes-wyguivan".
+
+- 04h57: story "Bom dia" (frase de pensador + logo Equipe Maximus). Instagram e Facebook em story; TikTok no feed, sem música.
+- 09h27: **Reels de imóvel, só Instagram e Facebook** (novo, todo dia).
+- 11h07: post de imóvel (story + carrossel), segunda a sábado.
+- 12h57: story "Boa tarde" (mercado imobiliário, MCMV, investimento).
+- 15h27: **Reels de imóvel, só Instagram e Facebook** (novo, todo dia).
+- 19h17: post de imóvel (story + carrossel), segunda a sábado. Domingo: Reels às 19h17 e story às 09h17.
+
+Reels das 09h27 e 15h27:
+- Captações do Latitude em Goiânia e Aparecida, nas três faixas: baixo (R$ 280–480 mil),
+  médio (R$ 1–1,6 milhão), alto (R$ 4,5–6,5 milhões).
+- Rodízio de 3 dias: dia 1 baixo + médio; dia 2 alto + baixo; dia 3 médio + alto. Nunca repetir imóvel.
+- Vertical 1080x1920, até 30 s, chamativo e sofisticado, com trilha cinematográfica/suave ou gospel
+  (nunca modão, sertanejo comum, funk ou rock).
+- Assinatura "Wyguivan Reyller · CRECI 46.695" e chamada "Siga meu perfil".
+
 ## Onde ficam os materiais
 
 - Google Drive do Wyguivan: pastas compartilhadas das construtoras (MZN, EBM, Sousa Andrade,
