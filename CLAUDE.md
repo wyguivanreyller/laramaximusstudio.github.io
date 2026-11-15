@@ -69,7 +69,11 @@ Fuso: America/Sao_Paulo. Padrão completo de arte, legenda e música na skill "p
 Reels das 09h27 e 15h27:
 - Captações do Latitude em Goiânia e Aparecida, nas três faixas: baixo (R$ 280–480 mil),
   médio (R$ 1–1,6 milhão), alto (R$ 4,5–6,5 milhões).
-- Rodízio de 3 dias: dia 1 baixo + médio; dia 2 alto + baixo; dia 3 médio + alto. Nunca repetir imóvel.
+- Vigência: de **15/11/2026 a 31/12/2026** (47 dias).
+- Rodízio de 3 dias: dia 1 baixo (09h27) + médio (15h27); dia 2 alto + baixo; dia 3 médio + alto.
+  Depois volta ao dia 1, sem parar. 15/11 = dia 1. Para achar o dia: conte os dias desde 15/11,
+  divida por 3 e veja o resto (0 = dia 1, 1 = dia 2, 2 = dia 3). Ex.: 16/11 = dia 2, 17/11 = dia 3,
+  18/11 = dia 1, 31/12 = dia 2. Nunca repetir imóvel.
 - Vertical 1080x1920, até 30 s, chamativo e sofisticado, com trilha cinematográfica/suave ou gospel
   (nunca modão, sertanejo comum, funk ou rock).
 - Assinatura "Wyguivan Reyller · CRECI 46.695" e chamada "Siga meu perfil".
