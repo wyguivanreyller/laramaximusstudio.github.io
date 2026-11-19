@@ -29,6 +29,10 @@ e como trabalhamos. Atualize sempre que algo mudar (novo lançamento, novo link,
   com Metricool e Composio. Faz relatórios (semanal e mensal), automação liberada pelo Wyguivan,
   avisa quando os horários escolhidos não estão batendo a meta e monta a operação de tráfego pago.
   Gastar verba ou publicar algo novo: sempre pede OK antes. Chamar: "Tom, ...".
+  Regras do Wyguivan para o Tom: **Instagram só 5 hashtags**; **sem anúncio repetido até 31/12/2026**;
+  em **01/01/2027** completa **1 ano de programação** (plano anual 2027); **+2 posts por dia**, de
+  segunda a domingo; **domingo tem horários próprios**, passados ao Wyguivan antes. Tom pode apagar
+  os testes que ele mesmo cria. Vídeo: Tom escreve o roteiro e o Maximus produz.
 
 ## Landpage (Latitude Pages)
 
