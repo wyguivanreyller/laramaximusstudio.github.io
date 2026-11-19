@@ -23,6 +23,13 @@ e como trabalhamos. Atualize sempre que algo mudar (novo lançamento, novo link,
 - Começar a resposta pelo resultado. Mensagens curtas.
 - Confirmar antes de qualquer coisa que não tem volta (apagar projeto, trocar endereço público).
 
+## Equipe de agentes
+
+- **Tom** (`.claude/agents/tom.md`): gestor de anúncios e tráfego pago (Instagram, Facebook, TikTok)
+  com Metricool e Composio. Faz relatórios (semanal e mensal), automação liberada pelo Wyguivan,
+  avisa quando os horários escolhidos não estão batendo a meta e monta a operação de tráfego pago.
+  Gastar verba ou publicar algo novo: sempre pede OK antes. Chamar: "Tom, ...".
+
 ## Landpage (Latitude Pages)
 
 - Existe **uma única landpage**: https://wyguivan-reyller.latitude.app.br
