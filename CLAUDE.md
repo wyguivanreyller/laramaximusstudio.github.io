@@ -59,3 +59,10 @@ e como trabalhamos. Atualize sempre que algo mudar (novo lançamento, novo link,
 
 - Google Drive do Wyguivan: pastas compartilhadas das construtoras (MZN, EBM, Sousa Andrade,
   SOMOS etc.). Procurar o book lá antes de pedir.
+
+## Sessão leve (desde 25/11/2026)
+
+- `.claude/settings.json` deste projeto desativa ~365 plugins que não são de imóveis/anúncios
+  e bloqueia Sent, Zoom, Asana, n8n e Floot. Anúncios: só hyper-marketing + Metricool + Canva.
+- Para voltar atrás: apagar `.claude/settings.json`. Backup e lista completa: `.claude/backup-2026-11-25/`.
+- No início do dia, rodar `/context`; se o peso fixo passar de ~40k, algum plugin voltou.
