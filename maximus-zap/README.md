@@ -62,7 +62,7 @@ sugestão ao agente certo e coloca o texto no campo para o corretor revisar e en
 Pedido de documentos é respondido direto com a lista oficial, sem chamar a IA.
 
 Depois de mudar prompts ou config: `npm run build:extension` e recarregue a extensão.
-Teste ponta a ponta (página imitando o WhatsApp + API falsa): `node scripts/e2e-extension.mjs`.
+Testes de navegador: `node scripts/e2e-extension.mjs` (extensão) e `node scripts/e2e-admin.mjs` (página /admin).
 
 **Limites honestos:**
 - Foi testada só contra uma página que imita o WhatsApp, **não contra o WhatsApp real**. Os seletores

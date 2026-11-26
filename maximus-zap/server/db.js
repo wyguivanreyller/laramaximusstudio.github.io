@@ -72,6 +72,21 @@ export function abrirBanco(caminho, corretoresIniciais, sal = "") {
       });
     },
 
+    // Quantos leads cada corretor recebeu (total e hoje, no horário de Brasília, UTC-3).
+    resumo() {
+      const BRT = 3 * 3600_000;
+      const inicioHoje = new Date(Math.floor((Date.now() - BRT) / 86_400_000) * 86_400_000 + BRT).toISOString();
+      const contar = (sql, ...args) =>
+        Object.fromEntries(db.prepare(sql).all(...args).map((r) => [r.corretor_id, r.n]));
+      const total = contar("SELECT corretor_id, COUNT(*) AS n FROM atribuicoes GROUP BY corretor_id");
+      const hoje = contar("SELECT corretor_id, COUNT(*) AS n FROM atribuicoes WHERE criado_em >= ? GROUP BY corretor_id", inicioHoje);
+      const { proximo } = this.estado();
+      return {
+        proximo,
+        corretores: listar().map((c) => ({ ...c, total: total[c.id] || 0, hoje: hoje[c.id] || 0 })),
+      };
+    },
+
     liberar(leadId) {
       return db.prepare("DELETE FROM atribuicoes WHERE lead_hash=?").run(hashLead(leadId, sal)).changes > 0;
     },

@@ -23,6 +23,15 @@ Docker: `docker build -t maximus-zap . && docker run -p 8787:8787 -v maximus-dat
 **Publique atrás de HTTPS** (Render, Railway, Fly, VPS com Caddy/Nginx). O site do Maximus no GitHub Pages
 não serve: ele só hospeda páginas estáticas. Use **1 instância só** (o SQLite é um arquivo).
 
+## Página de administração
+Abra `https://SEU-SERVIDOR/admin` (funciona bem no celular) e entre com o **token de administrador**.
+- Vê quem é o **próximo da vez** e quantos leads cada corretor recebeu (hoje e total, horário de Brasília).
+- **Liga/desliga corretor** com um toque (quem está desligado é pulado). Se todos forem desligados, aparece um alerta.
+- **Solta um lead** pelo nome do contato, para ele ser entregue de novo.
+- O token fica só na aba aberta (some ao fechar ou clicar em *Sair*). A página atualiza sozinha a cada 15 s.
+- Segurança: a página em si é pública (não tem dado nenhum); tudo o que ela mostra vem de rotas que exigem o token.
+  Tem política de conteúdo restrita (sem script de fora nem inline).
+
 ## Variáveis
 | Nome | Para quê |
 |---|---|
@@ -39,6 +48,7 @@ não serve: ele só hospeda páginas estáticas. Use **1 instância só** (o SQL
 | `GET /saude` | público | `{ok:true}` |
 | `GET /v1/rodizio` | corretor | próximo da vez e lista (não avança) |
 | `POST /v1/rodizio/assumir` `{leadId}` | corretor | atribui o próximo; repetido devolve o mesmo corretor |
+| `GET /v1/admin/resumo` | admin | próximo da vez + leads por corretor (hoje e total) |
 | `PATCH /v1/corretores/:id` `{ativo}` | admin | liga/desliga na fila (férias, folga) |
 | `POST /v1/leads/liberar` `{leadId}` | admin | solta o lead para ser atribuído de novo |
 | `POST /v1/messages` | corretor | proxy da IA: só `model`, `system`, `messages`; teto de 800 tokens |
@@ -50,4 +60,3 @@ Exemplo (desligar a Suelen hoje): `curl -X PATCH $URL/v1/corretores/suelen -H "x
 - O servidor não registra o texto das conversas; mas elas **passam por ele e pela Anthropic**: cite isso na política de privacidade (LGPD).
 - O identificador do lead é o nome do contato no WhatsApp. Dois clientes com o mesmo nome caem no mesmo lead; contatos salvos com número são mais confiáveis. Se isso incomodar, use o `liberar`.
 - Tokens vão por HTTPS; quem tiver o token usa a cota da IA: troque-o se vazar.
-- Não há painel de administração: ligar/desligar é por `curl` (ou eu posso montar uma página simples).

@@ -165,3 +165,33 @@ test("limite de pedidos por minuto por pessoa: 429", async () => {
   assert.equal((await chamar("GET", "/v1/rodizio", { token: TOK.marilia })).status, 200); // outra pessoa não é afetada
   await fechar();
 });
+
+test("página de administração é servida sem token, com cabeçalhos de segurança", async () => {
+  const { s, fechar } = await subir(envBase());
+  const base = `http://127.0.0.1:${s.address().port}`;
+  const html = await fetch(base + "/admin");
+  assert.equal(html.status, 200);
+  assert.match(html.headers.get("content-type"), /text\/html/);
+  assert.match(html.headers.get("content-security-policy"), /default-src 'none'/);
+  assert.equal(html.headers.get("x-content-type-options"), "nosniff");
+  const corpo = await html.text();
+  assert.ok(!/inline|onclick=|<script>[^<]/.test(corpo), "não pode ter script inline");
+  assert.equal((await fetch(base + "/admin.js")).status, 200);
+  assert.equal((await fetch(base + "/admin.css")).status, 200);
+  await fechar();
+});
+
+test("resumo: só admin vê; conta leads por corretor (hoje e total)", async () => {
+  const { chamar, fechar } = await subir(envBase());
+  assert.equal((await chamar("GET", "/v1/admin/resumo", { token: TOK.suelen })).status, 403);
+  assert.equal((await chamar("GET", "/v1/admin/resumo")).status, 401);
+  for (const l of ["a", "b", "c"]) await chamar("POST", "/v1/rodizio/assumir", { token: TOK.suelen, corpo: { leadId: l } });
+  const r = await chamar("GET", "/v1/admin/resumo", { token: "tok-admin" });
+  assert.equal(r.status, 200);
+  const por = Object.fromEntries(r.json.corretores.map((c) => [c.id, [c.hoje, c.total]]));
+  assert.deepEqual(por.suelen, [1, 1]);
+  assert.deepEqual(por.iara, [1, 1]);
+  assert.deepEqual(por.guilherme, [0, 0]);
+  assert.equal(r.json.proximo.nome, "Francine");
+  await fechar();
+});

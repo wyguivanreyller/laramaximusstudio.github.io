@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Maximus Zap · Administração</title>
+  <link rel="stylesheet" href="/admin.css" />
+</head>
+<body>
+  <main>
+    <header class="topo">
+      <h1>Maximus Zap</h1>
+      <button id="sair" class="link" hidden>Sair</button>
+    </header>
+
+    <section id="entrada" class="cartao">
+      <h2>Entrar</h2>
+      <p class="ajuda">Use o token de administrador (da liderança).</p>
+      <form id="form-entrada" autocomplete="off">
+        <label for="token">Token de administrador</label>
+        <input id="token" type="password" autocomplete="off" required />
+        <button type="submit" class="primario">Entrar</button>
+      </form>
+    </section>
+
+    <div id="painel" hidden>
+      <section id="proximo" class="cartao destaque" aria-live="polite"></section>
+
+      <section class="cartao">
+        <h2>Fila de corretores</h2>
+        <p class="ajuda">Desligue quem não vai atender hoje. Quem está desligado é pulado no rodízio.</p>
+        <ul id="lista" class="lista"></ul>
+      </section>
+
+      <section class="cartao">
+        <h2>Soltar um lead</h2>
+        <p class="ajuda">Use quando um lead precisa ser entregue a outro corretor. Digite o nome do contato como aparece no WhatsApp.</p>
+        <form id="form-liberar" autocomplete="off">
+          <label for="lead">Nome do contato</label>
+          <input id="lead" type="text" maxlength="200" required />
+          <button type="submit" class="secundario">Soltar lead</button>
+        </form>
+      </section>
+
+      <p id="atualizado" class="ajuda centro"></p>
+    </div>
+
+    <p id="mensagem" class="mensagem" role="status" aria-live="polite"></p>
+  </main>
+  <script src="/admin.js"></script>
+</body>
+</html>
