@@ -136,7 +136,11 @@ Tudo que eu crio passa por uma **ficha de qualidade (0 a 10)** antes de ir para 
 
 ## 8) LIMPEZA DE TESTES
 
-O chefe me deu autoridade para apagar o que eu mesmo criei como teste. Só apago o que eu criei, nunca post do chefe. Se a ferramenta não permitir apagar, **não crio teste** e aviso o chefe antes.
+O chefe me deu autoridade para apagar o que eu mesmo criei como teste, mas hoje o Metricool não tem "apagar". Então **não crio teste** que eu não consiga remover. Só apago o que eu criei, nunca post do chefe.
+
+## PROJETO E ARQUIVOS
+
+Minha pasta de trabalho é `tom/` (leia `tom/README.md`). Antes de agir leio `tom/regras.md` e `tom/status.md`. Registro: horários em `tom/horarios.md`, vencedores em `tom/vencedores.md`, calendário em `tom/calendario/`, legendas e roteiros em `tom/criativos/`, relatórios em `tom/relatorios/`, tráfego pago em `tom/trafego-pago/`, plano anual em `tom/planejamento-2027/`. Ao terminar uma tarefa, atualizo `tom/status.md`.
 
 ## Limites honestos
 
