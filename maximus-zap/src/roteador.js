@@ -1,12 +1,4 @@
-import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
-
-const aqui = dirname(fileURLToPath(import.meta.url));
-
-export function carregarConfig(caminho = join(aqui, "..", "config", "equipe.json")) {
-  return JSON.parse(readFileSync(caminho, "utf8"));
-}
+// Lógica pura (sem Node): roda igual no servidor e dentro da extensão do Chrome.
 
 // ---------- Triagem de temperatura (apoio rápido; o agente refina depois) ----------
 const SINAIS_QUENTE =
@@ -40,6 +32,16 @@ export class Rodizio {
     return null;
   }
 
+  // Quem seria o próximo ativo, SEM avançar o rodízio (para só mostrar na tela).
+  espiar() {
+    const total = this.corretores.length;
+    for (let i = 0; i < total; i++) {
+      const candidato = this.corretores[(this.indice + i) % total];
+      if (candidato.ativo) return candidato;
+    }
+    return null;
+  }
+
   // Estado simples para salvar no CRM entre execuções.
   estado() {
     return { indice: this.indice };
@@ -52,7 +54,7 @@ export function dentroDoSla(recebidoEmMs, respondidoEmMs, limiteMs = 7000) {
 }
 
 // ---------- Escolha do agente pela etapa do funil ----------
-export function escolherAgente(etapa, config = carregarConfig()) {
+export function escolherAgente(etapa, config) {
   for (const [id, agente] of Object.entries(config.agentes)) {
     if (agente.etapas.includes(etapa)) return id;
   }
@@ -60,19 +62,19 @@ export function escolherAgente(etapa, config = carregarConfig()) {
 }
 
 // ---------- Pós-venda: qual passo da régua está vencido ----------
-export function passoPosVenda(diasDesdeFechamento, config = carregarConfig()) {
+export function passoPosVenda(diasDesdeFechamento, config) {
   const vencidos = config.posVenda.passos.filter((p) => p.diaApos <= diasDesdeFechamento);
   return vencidos.length ? vencidos[vencidos.length - 1] : null;
 }
 
 // ---------- Triagem completa da Telefonista ----------
-export function triagem({ texto, diasSemResposta = 0, etapa = "novo" }, rodizio, config = carregarConfig()) {
+export function triagem({ texto, diasSemResposta = 0, etapa = "novo" }, rodizio, config) {
   const temperatura = classificarTemperatura(texto, { diasSemResposta });
   const etapaEfetiva = temperatura === "quente" && etapa === "novo" ? "qualificacao" : etapa;
   return {
     temperatura,
     etapa: etapaEfetiva,
     agente: escolherAgente(etapaEfetiva, config),
-    corretor: rodizio.proximo(),
+    corretor: rodizio.espiar(), // quem assume chama rodizio.proximo()
   };
 }

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8" />
+<title>Maximus Zap — Opções</title>
+<style>
+  body{font-family:system-ui,sans-serif;max-width:560px;margin:32px auto;padding:0 16px;color:#111}
+  label{display:block;margin-top:16px;font-weight:600}
+  input{width:100%;padding:8px;font-size:14px;margin-top:4px}
+  button{margin-top:20px;padding:10px 18px;background:#0b5d3b;color:#fff;border:0;border-radius:8px;font-size:14px;cursor:pointer}
+  small{color:#555}
+</style>
+<h1>Maximus Zap</h1>
+<p>A extensão só <b>sugere</b> a resposta. Quem envia é você.</p>
+<label>Chave da IA (Anthropic)
+  <input id="apiKey" type="password" autocomplete="off" placeholder="sk-ant-..." />
+</label>
+<small>Fica salva só neste navegador (não sincroniza). Use uma chave só para isso, com limite de gasto.</small>
+<label>Modelo <input id="modelo" placeholder="claude-sonnet-5-5" /></label>
+<label>Quantas mensagens recentes enviar à IA <input id="maxMensagens" type="number" min="2" max="40" placeholder="12" /></label>
+<label>Endereço da API (avançado) <input id="apiUrl" placeholder="https://api.anthropic.com/v1/messages" /></label>
+<small>Só mude se a equipe tiver um servidor próprio no meio (mais seguro que a chave no navegador).</small>
+<br /><button id="salvar">Salvar</button> <span id="ok"></span>
+<script src="options.js"></script>

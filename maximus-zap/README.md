@@ -46,6 +46,33 @@ salvar(rodizio.estado());                                          // guarde o �
 
 Rodar os testes: `npm test` (Node 20+).
 
+## Extensão do Chrome (modo sugerir resposta)
+
+Pasta `extension/`. Ela **nunca envia** mensagem: lê a conversa aberta no WhatsApp Web, pede a
+sugestão ao agente certo e coloca o texto no campo para o corretor revisar e enviar.
+
+**Instalar (no computador, Chrome):**
+1. Abra `chrome://extensions`, ligue **Modo do desenvolvedor**.
+2. **Carregar sem compactação** e escolha a pasta `maximus-zap/extension`.
+3. Em **Detalhes → Opções da extensão**, cole a chave da IA e salve.
+4. Abra o WhatsApp Web, entre numa conversa e clique em **Maximus Zap** (canto inferior direito).
+
+**Botões:** *Sugerir resposta* · *Colocar no campo* (não envia) · *Copiar* · *Assumir lead* (avança o rodízio).
+Pedido de documentos é respondido direto com a lista oficial, sem chamar a IA.
+
+Depois de mudar prompts ou config: `npm run build:extension` e recarregue a extensão.
+Teste ponta a ponta (página imitando o WhatsApp + API falsa): `node scripts/e2e-extension.mjs`.
+
+**Limites honestos:**
+- Foi testada só contra uma página que imita o WhatsApp, **não contra o WhatsApp real**. Os seletores
+  ficam no topo de `extension/content.js`; se o WhatsApp mudar o layout, ajuste ali.
+- Lê só mensagens de texto (áudio, imagem e figurinha são ignorados).
+- A conversa recente (12 mensagens por padrão) vai para a API da IA: avise os clientes na política
+  de privacidade (LGPD). A chave fica no navegador; o ideal é um servidor da equipe no meio
+  (campo "Endereço da API" nas opções).
+- O rodízio é guardado por navegador (cada corretor tem o seu). Para um rodízio único da equipe
+  falta o banco de dados compartilhado.
+
 ## Decisões e cuidados
 
 - **Nada inventado:** os prompts proíbem citar preço, taxa, prazo ou metragem que não estejam no
@@ -58,10 +85,8 @@ Rodar os testes: `npm test` (Node 20+).
 
 ## O que falta para ir ao ar
 
-1. **Integração com o WhatsApp Web** (extensão do Chrome ou API oficial). O código atual não envia nem
-   lê mensagens. Recomendo começar com **sugestão de resposta para o corretor aprovar**; enviar
-   automático pelo WhatsApp Web pode violar os termos do WhatsApp e gerar bloqueio do número.
-   Para automação total, a opção segura é a **WhatsApp Business API**.
-2. **Persistência** do CRM (leads, etapa, estado do rodízio) e **chave do modelo de IA**.
+1. **Testar no WhatsApp real** e ajustar seletores; depois, se quiserem automação total, a opção segura é a
+   **WhatsApp Business API** (enviar automático pelo WhatsApp Web pode bloquear o número).
+2. **Banco compartilhado** (leads, etapa, rodízio único da equipe) e um servidor para guardar a chave da IA.
 3. **Prova de 7 s:** medir `dentroDoSla` em produção; a resposta da Telefonista deve ser curta para caber.
 4. **Books** dos demais empreendimentos para liberar dados verificados.

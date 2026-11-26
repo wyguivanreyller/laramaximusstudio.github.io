@@ -72,27 +72,35 @@ test("SLA da primeira resposta é de 7 segundos", () => {
 });
 
 test("etapas vão para o agente certo", () => {
-  assert.equal(escolherAgente("novo"), "trinity");
-  assert.equal(escolherAgente("reativacao"), "trinity");
-  assert.equal(escolherAgente("credito"), "neo");
-  assert.equal(escolherAgente("posVenda"), "neo");
-  assert.equal(escolherAgente("etapa-que-nao-existe"), "trinity");
+  assert.equal(escolherAgente("novo", config), "trinity");
+  assert.equal(escolherAgente("reativacao", config), "trinity");
+  assert.equal(escolherAgente("credito", config), "neo");
+  assert.equal(escolherAgente("posVenda", config), "neo");
+  assert.equal(escolherAgente("etapa-que-nao-existe", config), "trinity");
 });
 
 test("triagem de lead quente sobe para qualificação e distribui corretor", () => {
   const r = new Rodizio(config.corretores);
-  const t = triagem({ texto: "Posso visitar hoje?" }, r);
+  const t = triagem({ texto: "Posso visitar hoje?" }, r, config);
   assert.equal(t.temperatura, "quente");
   assert.equal(t.etapa, "qualificacao");
   assert.equal(t.agente, "trinity");
   assert.equal(t.corretor.nome, "Suelen");
 });
 
+test("espiar mostra o próximo sem avançar o rodízio", () => {
+  const r = new Rodizio(config.corretores);
+  assert.equal(r.espiar().nome, "Suelen");
+  assert.equal(r.espiar().nome, "Suelen");
+  assert.equal(r.proximo().nome, "Suelen");
+  assert.equal(r.espiar().nome, "Marília");
+});
+
 test("régua de pós-venda devolve o último passo vencido", () => {
-  assert.equal(passoPosVenda(0), null);
-  assert.equal(passoPosVenda(1).diaApos, 1);
-  assert.equal(passoPosVenda(45).diaApos, 30);
-  assert.equal(passoPosVenda(400).diaApos, 365);
+  assert.equal(passoPosVenda(0, config), null);
+  assert.equal(passoPosVenda(1, config).diaApos, 1);
+  assert.equal(passoPosVenda(45, config).diaApos, 30);
+  assert.equal(passoPosVenda(400, config).diaApos, 365);
 });
 
 for (const agente of ["trinity", "neo", "telefonista"]) {

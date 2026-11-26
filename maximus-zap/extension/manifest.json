@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Maximus Zap",
+  "version": "0.1.0",
+  "description": "Sugere respostas no WhatsApp Web para o corretor aprovar. Nunca envia sozinho.",
+  "permissions": ["storage"],
+  "host_permissions": ["https://web.whatsapp.com/*", "https://api.anthropic.com/*"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_ui": { "page": "options.html", "open_in_tab": true },
+  "icons": { "128": "icons/icone-192.png" }
+}

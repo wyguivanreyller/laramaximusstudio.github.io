@@ -1,7 +1,7 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { carregarConfig } from "./roteador.js";
+import { carregarConfig } from "./config.js";
 import { formatarListaDocumentos } from "./documentos.js";
 
 const aqui = dirname(fileURLToPath(import.meta.url));

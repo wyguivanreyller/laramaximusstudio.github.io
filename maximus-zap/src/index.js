@@ -1,6 +1,6 @@
+export { carregarConfig } from "./config.js";
 export { montarPrompt } from "./agentes.js";
 export {
-  carregarConfig,
   classificarTemperatura,
   Rodizio,
   dentroDoSla,
