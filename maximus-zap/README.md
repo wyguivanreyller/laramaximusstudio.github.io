@@ -24,6 +24,7 @@ prompts/modulos/*.md     conhecimento: vendas+DISC, crédito/CCA, jurídico/cart
                          portfólio, comunicação, pós-venda+storytelling
 src/agentes.js           montarPrompt(agente, { lead, dadosMercado })
 src/roteador.js          temperatura, rodízio, SLA, escolha de agente, régua de pós-venda
+server/                  servidor da equipe: rodízio único + proxy da IA
 src/documentos.js        lista oficial de documentos (CCA) e detecção do pedido
 test/                    testes (npm test)
 ```
@@ -70,8 +71,9 @@ Teste ponta a ponta (página imitando o WhatsApp + API falsa): `node scripts/e2e
 - A conversa recente (12 mensagens por padrão) vai para a API da IA: avise os clientes na política
   de privacidade (LGPD). A chave fica no navegador; o ideal é um servidor da equipe no meio
   (campo "Endereço da API" nas opções).
-- O rodízio é guardado por navegador (cada corretor tem o seu). Para um rodízio único da equipe
-  falta o banco de dados compartilhado.
+- Sem servidor, o rodízio é guardado por navegador (cada corretor tem o seu). Com o **servidor da equipe**
+  (`server/`, veja `server/README.md`), o rodízio é único e a chave da IA fica só no servidor:
+  preencha *Endereço do servidor* e *Token* nas opções.
 
 ## Decisões e cuidados
 
@@ -87,6 +89,6 @@ Teste ponta a ponta (página imitando o WhatsApp + API falsa): `node scripts/e2e
 
 1. **Testar no WhatsApp real** e ajustar seletores; depois, se quiserem automação total, a opção segura é a
    **WhatsApp Business API** (enviar automático pelo WhatsApp Web pode bloquear o número).
-2. **Banco compartilhado** (leads, etapa, rodízio único da equipe) e um servidor para guardar a chave da IA.
+2. **Publicar o servidor** (`server/`) em um endereço com HTTPS e entregar um token a cada corretor.
 3. **Prova de 7 s:** medir `dentroDoSla` em produção; a resposta da Telefonista deve ser curta para caber.
 4. **Books** dos demais empreendimentos para liberar dados verificados.

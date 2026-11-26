@@ -62,7 +62,7 @@ e como trabalhamos. Atualize sempre que algo mudar (novo lançamento, novo link,
 - Equipe: Wyguivan Reyller e André Fernandes (Equipe Maximus); corretores Suelen, Marília, Iara, Francine e Guilherme.
 - Telefonista responde em até 7 segundos. Lista de documentos do crédito é fixa (6 itens) e protegida por teste.
 - Só o Parque América Trancoso tem dados verificados; os demais precisam do book antes de citar números.
-- Extensão do Chrome em `maximus-zap/extension` (só sugere; o corretor envia). Falta testar no WhatsApp real e banco compartilhado do rodízio.
+- Extensão do Chrome em `maximus-zap/extension` (só sugere; o corretor envia). Servidor da equipe em `maximus-zap/server` (rodízio único + chave da IA); falta publicá-lo com HTTPS e testar no WhatsApp real.
 
 ## Onde ficam os materiais
 

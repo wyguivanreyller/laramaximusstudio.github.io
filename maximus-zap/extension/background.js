@@ -11,8 +11,29 @@ const PADRAO = {
 };
 
 async function carregarOpcoes() {
-  const salvo = await chrome.storage.local.get(["apiKey", "apiUrl", "modelo", "maxMensagens", "rodizioIndice"]);
-  return { ...PADRAO, ...Object.fromEntries(Object.entries(salvo).filter(([, v]) => v !== undefined && v !== "")) };
+  const salvo = await chrome.storage.local.get([
+    "apiKey", "apiUrl", "modelo", "maxMensagens", "rodizioIndice", "servidorUrl", "token",
+  ]);
+  const o = { ...PADRAO, ...Object.fromEntries(Object.entries(salvo).filter(([, v]) => v !== undefined && v !== "")) };
+  // Servidor da equipe: rodízio único e chave da IA guardada lá. O token do corretor faz o papel de chave.
+  if (o.servidorUrl && o.token) {
+    const base = o.servidorUrl.replace(/\/+$/, "");
+    o.servidor = { base, token: o.token };
+    o.apiUrl = `${base}/v1/messages`;
+    o.apiKey = o.token;
+  }
+  return o;
+}
+
+async function chamarServidor(opcoes, metodo, rota, corpo) {
+  const r = await fetch(opcoes.servidor.base + rota, {
+    method: metodo,
+    headers: { "content-type": "application/json", "x-api-key": opcoes.servidor.token },
+    body: corpo ? JSON.stringify(corpo) : undefined,
+  });
+  const json = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(json.erro || `Servidor respondeu ${r.status}`);
+  return json;
 }
 
 function rodizioAtual(opcoes) {
@@ -92,6 +113,11 @@ async function sugerir({ contato, mensagens, agente: forcado }) {
 
   const rodizio = rodizioAtual(opcoes);
   const t = triagem({ texto: ultimaDoCliente.texto }, rodizio, CONFIG);
+  if (opcoes.servidor) {
+    // Rodízio único da equipe: quem é o próximo vem do servidor (não avança até clicar em "Assumir").
+    const est = await chamarServidor(opcoes, "GET", "/v1/rodizio").catch(() => null);
+    if (est) t.corretor = est.proximo;
+  }
 
   // Pedido de documentos: resposta fixa, sem modelo, sempre com a lista oficial.
   if (pediuDocumentos(ultimaDoCliente.texto)) {
@@ -126,8 +152,13 @@ async function sugerir({ contato, mensagens, agente: forcado }) {
   };
 }
 
-async function assumir() {
+async function assumir({ contato } = {}) {
   const opcoes = await carregarOpcoes();
+  if (opcoes.servidor) {
+    if (!contato) return { erro: "Abra uma conversa para assumir o lead." };
+    const r = await chamarServidor(opcoes, "POST", "/v1/rodizio/assumir", { leadId: contato });
+    return { corretor: r.corretor?.nome ?? null, proximo: r.proximo?.nome ?? null, jaAtribuido: r.jaAtribuido };
+  }
   const rodizio = rodizioAtual(opcoes);
   const corretor = rodizio.proximo();
   await chrome.storage.local.set({ rodizioIndice: rodizio.estado().indice });
@@ -136,7 +167,7 @@ async function assumir() {
 
 async function tratar(msg) {
   if (msg?.tipo === "sugerir") return sugerir(msg);
-  if (msg?.tipo === "assumir") return assumir();
+  if (msg?.tipo === "assumir") return assumir(msg);
   return { erro: "Pedido desconhecido." };
 }
 

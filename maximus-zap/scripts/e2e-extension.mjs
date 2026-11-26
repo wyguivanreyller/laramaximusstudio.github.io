@@ -6,6 +6,7 @@ import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import assert from "node:assert/strict";
+import { criarServidor } from "../server/server.js";
 import { createRequire } from "node:module";
 
 const require = createRequire(import.meta.url);
@@ -47,7 +48,7 @@ const api = http
   .listen(0);
 const porta = api.address().port;
 
-async function abrir(mensagens) {
+async function abrir(mensagens, armazenamento) {
   const ctx = await chromium.launchPersistentContext(mkdtempSync(join(tmpdir(), "mz-")), {
     headless: false,
     args: [`--disable-extensions-except=${extensao}`, `--load-extension=${extensao}`, "--headless=new"],
@@ -57,8 +58,8 @@ async function abrir(mensagens) {
   );
   let sw = ctx.serviceWorkers()[0] || (await ctx.waitForEvent("serviceworker"));
   await sw.evaluate(
-    (p) => chrome.storage.local.set({ apiKey: "chave-falsa", apiUrl: `http://127.0.0.1:${p}/v1/messages` }),
-    porta,
+    (dados) => chrome.storage.local.set(dados),
+    armazenamento ?? { apiKey: "chave-falsa", apiUrl: `http://127.0.0.1:${porta}/v1/messages` },
   );
   const page = await ctx.newPage();
   await page.goto("https://web.whatsapp.com/");
@@ -99,6 +100,34 @@ try {
   await page.waitForFunction(() => /assumiu/.test(document.getElementById("maximus-zap-host").shadowRoot.getElementById("info").textContent));
   assert.match(await painel(page, "#info").innerText(), /Suelen assumiu\. Próximo da vez: Marília/);
   await ctx.close();
+
+  // 4) Servidor da equipe: dois corretores, rodízio único, chave da IA só no servidor.
+  const dir = mkdtempSync(join(tmpdir(), "mz-srv-"));
+  const srv = criarServidor({
+    MAXIMUS_DB: join(dir, "e2e.db"),
+    MAXIMUS_TOKENS: "suelen:tok-s,marilia:tok-m",
+    ANTHROPIC_API_KEY: "chave-real-so-no-servidor",
+    ANTHROPIC_URL: `http://127.0.0.1:${porta}/v1/messages`,
+  });
+  await new Promise((r) => srv.listen(0, r));
+  const base = `http://127.0.0.1:${srv.address().port}`;
+  const conversa = [["in", "Oi, vi o anúncio do apartamento"]];
+  const A = await abrir(conversa, { servidorUrl: base, token: "tok-s" });
+  const B = await abrir(conversa, { servidorUrl: base, token: "tok-m" });
+  await painel(A.page, "#fab").click();
+  await painel(A.page, "#sugerir").click();
+  await A.page.waitForFunction(() => document.getElementById("maximus-zap-host").shadowRoot.getElementById("texto").value);
+  assert.equal(ultimoPedido.system.includes("TELEFONISTA"), true);
+  await painel(A.page, "#assumir").click();
+  await A.page.waitForFunction(() => /assumiu/.test(document.getElementById("maximus-zap-host").shadowRoot.getElementById("info").textContent));
+  assert.match(await painel(A.page, "#info").innerText(), /Suelen assumiu\. Próximo da vez: Marília/);
+  await painel(B.page, "#fab").click();
+  await painel(B.page, "#assumir").click();
+  await B.page.waitForFunction(() => /já é de/.test(document.getElementById("maximus-zap-host").shadowRoot.getElementById("info").textContent));
+  assert.match(await painel(B.page, "#info").innerText(), /já é de Suelen/);
+  await A.ctx.close();
+  await B.ctx.close();
+  srv.close();
   console.log("E2E OK");
 } finally {
   api.close();

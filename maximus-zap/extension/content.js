@@ -125,7 +125,13 @@
   };
 
   $("assumir").onclick = async () => {
-    const r = await chrome.runtime.sendMessage({ tipo: "assumir" });
-    info(r?.erro ? r.erro : `${r.corretor ?? "Ninguém"} assumiu. Próximo da vez: ${r.proximo ?? "-"}.`);
+    const r = await chrome.runtime.sendMessage({ tipo: "assumir", contato: lerConversa().contato });
+    if (r?.erro) return info(r.erro, "erro");
+    info(
+      r.jaAtribuido
+        ? `Este lead já é de ${r.corretor}. Próximo da vez: ${r.proximo ?? "-"}.`
+        : `${r.corretor ?? "Ninguém"} assumiu. Próximo da vez: ${r.proximo ?? "-"}.`,
+      r.jaAtribuido ? "aviso" : "",
+    );
   };
 })();

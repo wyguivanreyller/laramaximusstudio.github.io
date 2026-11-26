@@ -1,4 +1,4 @@
-const CAMPOS = ["apiKey", "modelo", "maxMensagens", "apiUrl"];
+const CAMPOS = ["servidorUrl", "token", "apiKey", "modelo", "maxMensagens", "apiUrl"];
 const el = (id) => document.getElementById(id);
 
 chrome.storage.local.get(CAMPOS).then((salvo) => {
