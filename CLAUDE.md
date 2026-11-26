@@ -55,6 +55,15 @@ e como trabalhamos. Atualize sempre que algo mudar (novo lançamento, novo link,
 - Rodapé: "*Sujeito à análise de crédito. Imagens meramente ilustrativas."
 - Não inventar dados: só usar o que está no book ou o que ele informar.
 
+## Maximus Zap (CRM de WhatsApp da MyBroker Independência)
+
+- Código em `maximus-zap/` (agentes Trinity, Neo e Telefonista, rodízio de corretores, lista de documentos CCA).
+  Detalhes no `maximus-zap/README.md`. Rodar testes: `cd maximus-zap && npm test`.
+- Equipe: Wyguivan Reyller e André Fernandes (Equipe Maximus); corretores Suelen, Marília, Iara, Francine e Guilherme.
+- Telefonista responde em até 7 segundos. Lista de documentos do crédito é fixa (6 itens) e protegida por teste.
+- Só o Parque América Trancoso tem dados verificados; os demais precisam do book antes de citar números.
+- Falta: integração real com o WhatsApp (sugerir resposta para o corretor aprovar ou usar a API oficial).
+
 ## Onde ficam os materiais
 
 - Google Drive do Wyguivan: pastas compartilhadas das construtoras (MZN, EBM, Sousa Andrade,

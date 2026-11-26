@@ -1,0 +1,12 @@
+{
+  "name": "maximus-zap",
+  "version": "0.1.0",
+  "description": "Cérebro do Maximus Zap: agentes Trinity, Neo e Telefonista para o WhatsApp Web da MyBroker Independência.",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --test \"test/*.test.js\""
+  },
+  "license": "UNLICENSED",
+  "private": true
+}

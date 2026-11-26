@@ -1,0 +1,52 @@
+{
+  "imobiliaria": "MyBroker Independência",
+  "equipe": "Equipe Maximus",
+  "regiao": ["Goiânia (GO)", "Aparecida de Goiânia (GO)"],
+  "lideranca": [
+    { "nome": "Wyguivan Reyller", "cargo": "Gerente comercial", "creci": "46.695" },
+    { "nome": "André Fernandes", "cargo": "Liderança comercial" }
+  ],
+  "corretores": [
+    { "id": "suelen", "nome": "Suelen", "ativo": true },
+    { "id": "marilia", "nome": "Marília", "ativo": true },
+    { "id": "iara", "nome": "Iara", "ativo": true },
+    { "id": "francine", "nome": "Francine", "ativo": true },
+    { "id": "guilherme", "nome": "Guilherme", "ativo": true }
+  ],
+  "sla": {
+    "primeiraRespostaMs": 7000,
+    "reativacaoMaxTentativas": 3,
+    "reativacaoIntervaloDias": [2, 5, 10]
+  },
+  "agentes": {
+    "trinity": {
+      "nome": "Trinity",
+      "foco": "Prospecção, qualificação, reativação de leads e condução até a visita",
+      "etapas": ["novo", "qualificacao", "reativacao", "visita"]
+    },
+    "neo": {
+      "nome": "Neo",
+      "foco": "Negociação, crédito (CCA), fechamento e pós-venda",
+      "etapas": ["negociacao", "credito", "fechado", "posVenda"]
+    }
+  },
+  "posVenda": {
+    "passos": [
+      { "diaApos": 1, "objetivo": "Parabenizar e confirmar próximos passos da assinatura/financiamento" },
+      { "diaApos": 30, "objetivo": "Acompanhar andamento (documentos, banco, cartório) e tirar dúvidas" },
+      { "diaApos": 90, "objetivo": "Check-in de satisfação e atualização do andamento da obra/entrega" },
+      { "diaApos": 180, "objetivo": "Compartilhar marco de obra ou novidade do empreendimento" },
+      { "diaApos": 365, "objetivo": "Aniversário da compra: agradecer e pedir indicação com naturalidade" }
+    ]
+  },
+  "portfolio": [
+    { "nome": "Parque América Trancoso", "construtoras": "EBM + Tropical", "dadosVerificados": true },
+    { "nome": "Natuá by PLANO&PLANO", "dadosVerificados": false },
+    { "nome": "Paradiso", "aliases": ["Paradizzo"], "dadosVerificados": false },
+    { "nome": "FGR", "dadosVerificados": false },
+    { "nome": "Lifa da Bink", "dadosVerificados": false },
+    { "nome": "Logic Modern Life", "dadosVerificados": false },
+    { "nome": "Ryokan Flamboyant", "dadosVerificados": false },
+    { "nome": "Encontro das Águas (loteamento)", "dadosVerificados": false }
+  ]
+}
